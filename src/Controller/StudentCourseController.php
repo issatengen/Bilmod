@@ -17,6 +17,10 @@ final class StudentCourseController extends AbstractController
     #[Route(name: 'app_student_course_index', methods: ['GET'])]
     public function index(StudentCourseRepository $studentCourseRepository): Response
     {
+        if (!$this->getUser()) {
+            // Redirect to login if not authenticated
+            return $this->redirectToRoute('app_login');
+        }
         return $this->render('student_course/index.html.twig', [
             'student_courses' => $studentCourseRepository->findAll(),
         ]);

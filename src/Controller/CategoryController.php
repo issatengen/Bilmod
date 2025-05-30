@@ -17,6 +17,10 @@ final class CategoryController extends AbstractController
     #[Route(name: 'app_category_index', methods: ['GET'])]
     public function index(CategoryRepository $categoryRepository): Response
     {
+        if (!$this->getUser()) {
+            // Redirect to login if not authenticated
+            return $this->redirectToRoute('app_login');
+        }
         return $this->render('category/index.html.twig', [
             'categories' => $categoryRepository->findAll(),
         ]);

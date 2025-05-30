@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20250525073601 extends AbstractMigration
+final class Version20250529012057 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -21,19 +21,22 @@ final class Version20250525073601 extends AbstractMigration
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql(<<<'SQL'
+            CREATE TABLE admin_users (id INT AUTO_INCREMENT NOT NULL, email VARCHAR(180) NOT NULL, roles JSON NOT NULL, password VARCHAR(255) NOT NULL, user_photo VARCHAR(200) DEFAULT NULL, UNIQUE INDEX UNIQ_IDENTIFIER_EMAIL (email), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB
+        SQL);
+        $this->addSql(<<<'SQL'
             CREATE TABLE category (id INT AUTO_INCREMENT NOT NULL, category_code VARCHAR(10) NOT NULL, category_label VARCHAR(30) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB
         SQL);
         $this->addSql(<<<'SQL'
-            CREATE TABLE course (id INT AUTO_INCREMENT NOT NULL, user_id INT NOT NULL, category_id INT NOT NULL, course_code VARCHAR(10) NOT NULL, course_title VARCHAR(50) NOT NULL, price INT NOT NULL, INDEX IDX_169E6FB9A76ED395 (user_id), INDEX IDX_169E6FB912469DE2 (category_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB
+            CREATE TABLE course (id INT AUTO_INCREMENT NOT NULL, user_id INT NOT NULL, category_id INT NOT NULL, admin_users_id INT NOT NULL, course_code VARCHAR(10) NOT NULL, course_title VARCHAR(50) NOT NULL, price INT NOT NULL, INDEX IDX_169E6FB9A76ED395 (user_id), INDEX IDX_169E6FB912469DE2 (category_id), INDEX IDX_169E6FB9F313B33B (admin_users_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB
         SQL);
         $this->addSql(<<<'SQL'
-            CREATE TABLE leson (id INT AUTO_INCREMENT NOT NULL, user_id INT NOT NULL, course_id INT DEFAULT NULL, leson_code VARCHAR(10) NOT NULL, leson_title VARCHAR(50) NOT NULL, time_allocated INT NOT NULL, INDEX IDX_88C0875EA76ED395 (user_id), INDEX IDX_88C0875E591CC992 (course_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB
+            CREATE TABLE leson (id INT AUTO_INCREMENT NOT NULL, user_id INT NOT NULL, course_id INT DEFAULT NULL, admin_users_id INT NOT NULL, leson_code VARCHAR(10) NOT NULL, leson_title VARCHAR(50) NOT NULL, time_allocated INT NOT NULL, INDEX IDX_88C0875EA76ED395 (user_id), INDEX IDX_88C0875E591CC992 (course_id), INDEX IDX_88C0875EF313B33B (admin_users_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB
         SQL);
         $this->addSql(<<<'SQL'
             CREATE TABLE role (id INT AUTO_INCREMENT NOT NULL, role_code VARCHAR(10) NOT NULL, role_label VARCHAR(30) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB
         SQL);
         $this->addSql(<<<'SQL'
-            CREATE TABLE student (id INT AUTO_INCREMENT NOT NULL, user_id INT NOT NULL, student_code VARCHAR(10) NOT NULL, student_first_name VARCHAR(10) NOT NULL, student_name VARCHAR(100) NOT NULL, student_email VARCHAR(100) NOT NULL, student_photo VARCHAR(150) DEFAULT NULL, student_password VARCHAR(100) NOT NULL, INDEX IDX_B723AF33A76ED395 (user_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB
+            CREATE TABLE student (id INT AUTO_INCREMENT NOT NULL, user_id INT NOT NULL, admin_user_id INT NOT NULL, student_code VARCHAR(10) NOT NULL, student_first_name VARCHAR(10) NOT NULL, student_name VARCHAR(100) NOT NULL, student_email VARCHAR(100) NOT NULL, student_photo VARCHAR(150) DEFAULT NULL, student_password VARCHAR(100) NOT NULL, INDEX IDX_B723AF33A76ED395 (user_id), INDEX IDX_B723AF336352511C (admin_user_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB
         SQL);
         $this->addSql(<<<'SQL'
             CREATE TABLE student_course (id INT AUTO_INCREMENT NOT NULL, student_id INT NOT NULL, course_id INT NOT NULL, nber_courses INT NOT NULL, amount DOUBLE PRECISION NOT NULL, INDEX IDX_98A8B739CB944F1A (student_id), INDEX IDX_98A8B739591CC992 (course_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB
@@ -51,13 +54,22 @@ final class Version20250525073601 extends AbstractMigration
             ALTER TABLE course ADD CONSTRAINT FK_169E6FB912469DE2 FOREIGN KEY (category_id) REFERENCES category (id)
         SQL);
         $this->addSql(<<<'SQL'
+            ALTER TABLE course ADD CONSTRAINT FK_169E6FB9F313B33B FOREIGN KEY (admin_users_id) REFERENCES admin_users (id)
+        SQL);
+        $this->addSql(<<<'SQL'
             ALTER TABLE leson ADD CONSTRAINT FK_88C0875EA76ED395 FOREIGN KEY (user_id) REFERENCES user (id)
         SQL);
         $this->addSql(<<<'SQL'
             ALTER TABLE leson ADD CONSTRAINT FK_88C0875E591CC992 FOREIGN KEY (course_id) REFERENCES course (id)
         SQL);
         $this->addSql(<<<'SQL'
+            ALTER TABLE leson ADD CONSTRAINT FK_88C0875EF313B33B FOREIGN KEY (admin_users_id) REFERENCES admin_users (id)
+        SQL);
+        $this->addSql(<<<'SQL'
             ALTER TABLE student ADD CONSTRAINT FK_B723AF33A76ED395 FOREIGN KEY (user_id) REFERENCES user (id)
+        SQL);
+        $this->addSql(<<<'SQL'
+            ALTER TABLE student ADD CONSTRAINT FK_B723AF336352511C FOREIGN KEY (admin_user_id) REFERENCES admin_users (id)
         SQL);
         $this->addSql(<<<'SQL'
             ALTER TABLE student_course ADD CONSTRAINT FK_98A8B739CB944F1A FOREIGN KEY (student_id) REFERENCES student (id)
@@ -80,13 +92,22 @@ final class Version20250525073601 extends AbstractMigration
             ALTER TABLE course DROP FOREIGN KEY FK_169E6FB912469DE2
         SQL);
         $this->addSql(<<<'SQL'
+            ALTER TABLE course DROP FOREIGN KEY FK_169E6FB9F313B33B
+        SQL);
+        $this->addSql(<<<'SQL'
             ALTER TABLE leson DROP FOREIGN KEY FK_88C0875EA76ED395
         SQL);
         $this->addSql(<<<'SQL'
             ALTER TABLE leson DROP FOREIGN KEY FK_88C0875E591CC992
         SQL);
         $this->addSql(<<<'SQL'
+            ALTER TABLE leson DROP FOREIGN KEY FK_88C0875EF313B33B
+        SQL);
+        $this->addSql(<<<'SQL'
             ALTER TABLE student DROP FOREIGN KEY FK_B723AF33A76ED395
+        SQL);
+        $this->addSql(<<<'SQL'
+            ALTER TABLE student DROP FOREIGN KEY FK_B723AF336352511C
         SQL);
         $this->addSql(<<<'SQL'
             ALTER TABLE student_course DROP FOREIGN KEY FK_98A8B739CB944F1A
@@ -96,6 +117,9 @@ final class Version20250525073601 extends AbstractMigration
         SQL);
         $this->addSql(<<<'SQL'
             ALTER TABLE user DROP FOREIGN KEY FK_8D93D649D60322AC
+        SQL);
+        $this->addSql(<<<'SQL'
+            DROP TABLE admin_users
         SQL);
         $this->addSql(<<<'SQL'
             DROP TABLE category

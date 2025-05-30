@@ -3,28 +3,60 @@
 {% block title %}Category{% endblock %}
 
 {% block body %}
-    <h1>Category</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ category.id }}</td>
-            </tr>
-            <tr>
-                <th>CategoryCode</th>
-                <td>{{ category.categoryCode }}</td>
-            </tr>
-            <tr>
-                <th>CategoryLabel</th>
-                <td>{{ category.categoryLabel }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <main class="main shadow-sm p-3 mb-5 bg-light rounded container">
+        {{include('partials/adminHeader.html.twig') }}
+        <div class="containe">
+            <div class="row mb-4 mt-4">
+                <p class="h3">Détails de la catégorie.</p>
+                <div class="col-md-2">
+                    <h1 class="mb-4">
+                    <i class="bi bi-people-add-fill"></i>
+                    </h1>
+                </div>
+                <div class="col-md-6">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <a href="{{ path('app_category_index') }}" class="btn btn-light mb-3 shadow-sm text-decoration-none text-info">
+                        <i class="bi bi-arrow-left"></i>
+                        Back to list
+                    </a>
 
-    <a href="{{ path('app_category_index') }}">back to list</a>
-
-    <a href="{{ path('app_category_edit', {'id': category.id}) }}">edit</a>
-
-    {{ include('category/_delete_form.html.twig') }}
+                    <a href="{{ path('app_category_edit', {'id': category.id}) }}" class="btn btn-primary mb-3 shadow-sm">
+                        <i class="bi bi-pencil-square"></i>
+                        <span class="visually-hidden">Edit</span>
+                    </a>
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th>Id</th>
+                                <td>{{ category.id }}</td>
+                            </tr>
+                            <tr>
+                                <th>CategoryCode</th>
+                                <td>{{ category.categoryCode }}</td>
+                            </tr>
+                            <tr>
+                                <th>CategoryLabel</th>
+                                <td>{{ category.categoryLabel }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-4">
+                    <!-- Grid Item 3 -->
+                    <div class="mb-3">
+                        <div class="text-center pt-3">
+                            <i class="bi bi-trash text-danger" style="font-size: 5rem;"></i>
+                            <h5 class="card-title">Modifier ou supprimer</h5>
+                            <p class="card-text">Merci</p>
+                            {{ include('category/_delete_form.html.twig') }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 {% endblock %}

@@ -38,6 +38,10 @@ class Course
     #[ORM\OneToMany(targetEntity: Leson::class, mappedBy: 'Course')]
     private Collection $course;
 
+    #[ORM\ManyToOne(inversedBy: 'AdminUser')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?AdminUsers $adminUsers = null;
+
     public function __construct()
     {
         $this->course = new ArrayCollection();
@@ -134,6 +138,18 @@ class Course
                 $course->setCourse(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAdminUsers(): ?AdminUsers
+    {
+        return $this->adminUsers;
+    }
+
+    public function setAdminUsers(?AdminUsers $adminUsers): static
+    {
+        $this->adminUsers = $adminUsers;
 
         return $this;
     }

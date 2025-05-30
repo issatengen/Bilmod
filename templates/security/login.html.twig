@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+<div class="main shadow-sm p-3 mb-5 bg-light rounded container">
+    <p class="h3">Authenfication</p>
+    <div class="row mb-4 mt-4">
+        <div class="col-md-4 mb-3">
+            <div class="text-center pt-2">
+                <i class="bi bi-box-arrow-in-right text-danger" style="font-size: 5rem;"></i>
+                <h5 class="h3">Authentifiez-vous</h5>
+                <p class="card-text">Athentifiez-vous avec votre adresse mail et votre mot de passe</p>
+               
+            </div>
+        </div>
+        <div class="col-md-6 bg-white p-4 ms-2 shadow-sm rounded">
+            <form method="post">
+                {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+
+                {% if app.user %}
+                    <div class="mb-3">
+                        You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                    </div>
+                {% endif %}
+                {% if app.request.query.get('error') %}
+                    <div class="alert alert-danger">
+                        Invalid credentials.
+                    </div>
+                {% endif %}
+
+                {# {% if app.request.query.get('logout') %}
+                    <div class="alert alert-success">
+                        You have been logged out.
+                    </div>
+                {% endif %}
+                {% if app.request.query.get('check_email') %}
+                    <div class="alert alert-success">
+                        An email has been sent. Please check your inbox.
+                    </div>
+                {% endif %}
+                {% if app.request.query.get('email_sent') %}
+                    <div class="alert alert-success">
+                        An email has been sent to your address.
+                    </div>
+                {% endif %} #}
+                <label for="inputEmail">Email</label>
+                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+                <label for="inputPassword">Password</label>
+                <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+                <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">
+
+                <div class="checkbox mb-3">
+                    <label>
+                        <input type="checkbox" name="_remember_me"> Remember me
+                    </label>
+                </div>
+
+                <button class="btn btn-primary" type="submit">
+                    <i class="bi bi-box-arrow-in-right"></i>
+                    Sign in
+                </button>
+
+            </form>
+        </div>
+        
+    </div>
+</div>
+{% endblock %}

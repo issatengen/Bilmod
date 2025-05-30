@@ -29,6 +29,10 @@ class Leson
     #[ORM\ManyToOne(inversedBy: 'course')]
     private ?Course $Course = null;
 
+    #[ORM\ManyToOne(inversedBy: 'AdminUsers')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?AdminUsers $AdminUsers = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -90,6 +94,18 @@ class Leson
     public function setCourse(?Course $Course): static
     {
         $this->Course = $Course;
+
+        return $this;
+    }
+
+    public function getAdminUsers(): ?AdminUsers
+    {
+        return $this->AdminUsers;
+    }
+
+    public function setAdminUsers(?AdminUsers $AdminUsers): static
+    {
+        $this->AdminUsers = $AdminUsers;
 
         return $this;
     }

@@ -17,6 +17,10 @@ final class RoleController extends AbstractController
     #[Route(name: 'app_role_index', methods: ['GET'])]
     public function index(RoleRepository $roleRepository): Response
     {
+        if (!$this->getUser()) {
+            // Redirect to login if not authenticated
+            return $this->redirectToRoute('app_login');
+        }
         return $this->render('role/index.html.twig', [
             'roles' => $roleRepository->findAll(),
         ]);

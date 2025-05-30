@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AdminUsers{% endblock %}
+
+{% block body %}
+
+    <div class="mt-3 "> 
+        <main class="main shadow-sm p-3 mb-5 bg-light rounded container">
+            {{include('partials/adminHeader.html.twig') }}
+            <div class="containe">
+                <div class="row mb-4 mt-4">
+                    <p class="h3">Create new AdminUsers.</p>
+                    <div class="col-md-2">
+                        <h1 class="mb-4">
+                        <i class="bi bi-people-add-fill"></i>
+                        </h1>
+                    </div>
+                    <div class="col-md-6">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <a href="{{ path('app_admin_users_index') }}" class="btn btn-light mb-3 shadow-sm text-decoration-none text-info">
+                            <i class="bi bi-arrow-left"></i>
+                            Back to list
+                        </a>
+
+                        <a href="{{ path('app_admin_users_edit', {'id': admin_user.id}) }}" class="btn btn-primary mb-3 shadow-sm">
+                            <i class="bi bi-pencil-square"></i>
+                            <span class="visually-hidden">Edit</span>
+                        </a>
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <th>Id</th>
+                                    <td>{{ admin_user.id }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Email</th>
+                                    <td>{{ admin_user.email }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Roles</th>
+                                    <td>{{ admin_user.roles ? admin_user.roles|json_encode : '' }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Password</th>
+                                    <td>{{ admin_user.password }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-4">
+                        <!-- Grid Item 3 -->
+                        <div class="mb-3">
+                            <div class="text-center pt-3">
+                                <i class="bi bi-trash text-danger" style="font-size: 5rem;"></i>
+                                <h5 class="card-title">Modifier ou supprimer</h5>
+                                <p class="card-text">Merci</p>
+                                {{ include('admin_users/_delete_form.html.twig') }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+{% endblock %}

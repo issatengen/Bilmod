@@ -43,6 +43,10 @@ class Student
     #[ORM\OneToMany(targetEntity: StudentCourse::class, mappedBy: 'student', orphanRemoval: true)]
     private Collection $receipt;
 
+    #[ORM\ManyToOne(inversedBy: 'student')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?AdminUsers $AdminUser = null;
+
     public function __construct()
     {
         $this->receipt = new ArrayCollection();
@@ -151,6 +155,18 @@ class Student
                 $receipt->setStudent(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAdminUser(): ?AdminUsers
+    {
+        return $this->AdminUser;
+    }
+
+    public function setAdminUser(?AdminUsers $AdminUser): static
+    {
+        $this->AdminUser = $AdminUser;
 
         return $this;
     }

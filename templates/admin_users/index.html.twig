@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AdminUsers index{% endblock %}
+
+{% block body %}
+
+<main class="main shadow-sm p-3 mb-5 bg-light rounded container">
+    {{include('partials/adminHeader.html.twig') }}
+    <div class="container">
+        
+        <div class="row mb-4 mt-4">
+            <p class="h3">List of Admin Users</p>
+            <div class="col-md-2">
+                <h1 class="mb-4">
+                   <i class="bi bi-people-fill"></i>
+                </h1>
+            </div>
+            <div class="col-md-2">
+                <a href="{{ path('app_admin_users_new') }}" class="btn btn-success mb-3">
+                    <i class="bi bi-person-add"></i>
+                    Ajouter
+                </a>
+            </div>
+            <div class="col-md-6">
+            </div>
+        </div>
+
+        {% if admin_users is not empty %}
+            <p class="text-muted">Total Admin Users: {{ admin_users|length }}</p>
+        {% endif %}
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for admin_user in admin_users %}
+                <tr>
+                    <td>{{ admin_user.email }}</td>
+                    <td>{{ admin_user.roles ? admin_user.roles|json_encode : '' }}</td>
+                    <td>
+                        <a href="{{ path('app_admin_users_show', {'id': admin_user.id}) }}" class="btn btn-info">
+                            <i class="bi bi-eye"></i>
+                            show
+                        </a>
+                        <a href="{{ path('app_admin_users_edit', {'id': admin_user.id}) }}" class="btn btn-primary">
+                            <i class="bi bi-pencil"></i>
+                            edit
+                        </a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="{{ path('app_admin_users_new') }}" class="btn btn-success">
+            <i class="bi bi-person-add"></i>
+            Create new
+        </a>
+    </div>
+</main>
+{% endblock %}
