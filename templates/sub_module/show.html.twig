@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sous-module{% endblock %}
+
+{% block body %}
+    {{ include('partials/admin_navbar.html.twig') }}
+    <div class="container py-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="mb-0 h2">Sous-module</h1>
+            <a href="" class="btn btn-secondary">
+                <i class="fa fa-arrow-left me-1"></i> Voir le cours
+            </a>
+        </div>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="" class="text-decoration-none">{{ sub_module.module.title }}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ sub_module.title }}</li>
+            </ol>
+        </nav>
+    </div>
+    <hr class="my-1">
+
+    <div class="card container shadow-sm mb-4">
+        <div class="card-body">
+            <table class="table table-bordered mb-0">
+                <tbody>
+                    <tr>
+                        <th scope="row">Titre</th>
+                        <td>{{ sub_module.title }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Description</th>
+                        <td>{{ sub_module.description }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Image</th>
+                        <td>
+                            {% if sub_module.image %}
+                                <img src="{{ asset('upload_images/' ~ sub_module.image) }}" alt="Image" class="img-thumbnail" style="max-width: 150px;">
+                            {% else %}
+                                <span class="text-muted">No image</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="d-flex gap-2">
+        <a href="{{ path('app_sub_module_index', {'id': sub_module.id}) }}" class="btn btn-outline-secondary">
+            <i class="fa fa-list me-1"></i> Back to list
+        </a>
+        <a href="{{ path('app_sub_module_edit', {'id': sub_module.id}) }}" class="btn btn-primary">
+            <i class="fa fa-edit me-1"></i> Edit
+        </a>
+    </div>
+
+    {{ include('sub_module/_delete_form.html.twig') }}
+    </div>
+{% endblock %}

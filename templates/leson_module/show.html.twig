@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}LesonModule{% endblock %}
+
+{% block body %}
+    {{ include('partials/admin_navbar.html.twig') }}
+    <div class="container py-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="mb-0 h2">Module</h1>
+            <a href="" class="btn btn-secondary">
+                <i class="fa fa-arrow-left me-1"></i>
+            </a>
+        </div>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="" class="text-decoration-none">{{cource.description }}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Affichage</li>
+            </ol>
+        </nav>
+    </div>
+    <hr class="my-1">
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ leson_module.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ leson_module.title }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ leson_module.description }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_leson_module_index') }}">back to list</a>
+
+    <a href="{{ path('app_leson_module_edit', {'id': leson_module.id}) }}">edit</a>
+
+    {{ include('leson_module/_delete_form.html.twig') }}
+{% endblock %}

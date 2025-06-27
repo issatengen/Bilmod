@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau Cours{% endblock %}
+
+{% block body %}
+{{ include('partials/admin_navbar.html.twig') }}
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="mb-0 h2">Créer un nouveau cours</h1>
+        <a href="{{ path('app_item_index') }}" class="btn btn-secondary">
+            <i class="fa fa-arrow-left me-1"></i> Retour à la liste
+        </a>
+    </div>
+</div>
+<hr class="my-1">
+<div class="row container mt-2 mb-4">
+    <div class="col-md-12 mb-4">
+        <p class="text-center text-muted">Remplissez le formulaire ci-dessous pour ajouter un nouveau cours.</p>
+    </div>
+    <div class=" col-md-6 bg-light p-4 rounded shadow">
+        {{ form_start(form) }}
+        <div class="mb-3">
+            <label for="item_name" class="form-label">Nom du cours</label>
+            {{ form_widget(form.designation, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="mb-3">
+            <label for="item_description" class="form-label">Description</label>
+            {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}    
+        </div>
+        <div class="mb-3">
+            <label for="item_price" class="form-label">Prix</label>
+            {{ form_widget(form.price, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="mb-3">
+            <label for="item_category" class="form-label">Catégorie</label>
+            {{ form_widget(form.category, {'attr': {'class': 'form-select'}}) }}    
+        </div>
+        <div class="mb-3">
+            <label for="item_image" class="form-label">Image</label>
+            {{ form_widget(form.image, {'attr': {'class': 'form-control'}}) }}
+            <small class="form-text text-muted">Veuillez télécharger une image pour le cours.</small>
+        </div>
+        <button class="btn btn-primary" type="submit">{{ button_label|default('Enregistrer') }}</button>
+        {{ form_end(form) }}
+    </div>
+    <div class="col-md-6 text-center">
+        <h5 class="text-center mb-3">Aperçu du cours</h5>
+        <i class="fa-solid fa-book-open fa-5x text-primary"></i>
+        <h2 class="mt-5">Pourquoi ajouter un cours ?</h2>
+        <p class="lead">Enrichissez votre catalogue et touchez plus d'apprenants.</p>
+        <p class="text-muted">Ajouter de nouveaux cours permet de diversifier votre offre et d'attirer de nouveaux étudiants.</p>
+    </div>
+</div>
+{% endblock %}

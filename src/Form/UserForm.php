@@ -2,10 +2,11 @@
 
 namespace App\Form;
 
-use App\Entity\Role;
 use App\Entity\User;
+use App\Entity\Role;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,23 +15,26 @@ class UserForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('userCode')
-            ->add('userFirstName')
-            ->add('userName')
-            ->add('userEmail')
-            ->add('userphoto')
-            ->add('userPassword')
-            ->add('role', EntityType::class, [
+            ->add('name')
+            ->add('email');
+            
+        if ($options['include_role']) {
+            $builder->add('role', EntityType::class, [
                 'class' => Role::class,
-                'choice_label' => 'id',
-            ])
-        ;
+                'choice_label' => 'label',
+            ]);
+        }
+        if ($options['include_password']) {
+            $builder->add('password', PasswordType::class);
+        }
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => User::class,
+            'include_password' => false,
+            'include_role' => false,
         ]);
     }
 }

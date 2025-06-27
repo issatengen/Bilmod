@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}LesonModule index{% endblock %}
+
+{% block body %}
+    {{ include('partials/admin_navbar.html.twig') }}
+    <div class="container py-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="mb-0 h2">Sous-modules</h1>
+            <a href="" class="btn btn-secondary">
+                <i class="fa fa-arrow-left me-1"></i> Voir le cours
+            </a>
+        </div>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="" class="text-decoration-none">{{cource.description }}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Liste des modules</li>
+            </ol>
+        </nav>
+    </div>
+    <hr class="my-1">
+
+        <div class=" container card mb-3 shadow-sm">
+            <div class="card-body p-0">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th scope="col">Titre</th>
+                            <th scope="col">Description</th>
+                            <th scope="col" class="text-end">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for leson_module in leson_modules %}
+                        <tr>
+                            <td>{{ leson_module.title }}</td>
+                            <td>{{ leson_module.description }}</td>
+                            <td class="text-end">
+                                <a href="{{ path('app_sub_module_index', {'id': leson_module.id}) }}" class="btn btn-sm btn-outline-primary me-1">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                                <a href="{{ path('app_leson_module_edit', {'id': leson_module.id}) }}" class="btn btn-sm btn-outline-secondary">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <a href="{{ path('app_sub_module_new', {'id': leson_module.id}) }}" class="btn btn-sm btn-outline-success" title="Ajouter un sous-module">
+                                    <i class="fa fa-add"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="3" class="text-center text-muted">Aucun module trouvé.</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    {# </div> #}
+
+    {# <a href="{{ path('app_leson_module_new') }}">Create new</a> #}
+{% endblock %}

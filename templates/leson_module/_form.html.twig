@@ -1,0 +1,30 @@
+<div class="row container mt-2 mb-4">
+    <div class="col-md-12 mb-4">
+        <p class="text-center text-muted">Remplissez le formulaire ci-dessous pour ajouter un nouveau module à un cours existant.</p>
+    </div>
+    <div class=" col-md-6 bg-light p-4 rounded shadow">
+        {{ form_start(form) }}
+        <div class="mb-3">
+            <label for="title" class="form-label">Titre</label>
+            {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="mb-3">
+            <label for="leson_description" class="form-label">Description</label>
+            {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}    
+        </div>
+        <div class="mb-3">
+            <label for="item_image" class="form-label">Image</label>
+            {{ form_widget(form.image, {'attr': {'class': 'form-control'}}) }}
+            <small class="form-text text-muted">Veuillez télécharger une image pour le module.</small>
+        </div>
+        <button class="btn btn-primary" type="submit">{{ button_label|default('Enregistrer') }}</button>
+        {{ form_end(form) }}
+    </div>
+    <div class="col-md-6 text-center">
+        <h5 class="text-center mb-3">Aperçu du module</h5>
+        <i class="fa-solid fa-layer-group fa-5x text-primary"></i>
+        <h2 class="mt-5">Pourquoi ajouter un module ?</h2>
+        <p class="lead">Structurez vos cours en plusieurs modules pour faciliter l’apprentissage.</p>
+        <p class="text-muted">Ajouter des modules permet de détailler le contenu d’un cours et d’offrir un parcours pédagogique progressif.</p>
+    </div>
+</div>

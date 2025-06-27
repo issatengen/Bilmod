@@ -48,8 +48,9 @@ final class RoleControllerTest extends WebTestCase
         self::assertResponseStatusCodeSame(200);
 
         $this->client->submitForm('Save', [
-            'role[roleCode]' => 'Testing',
-            'role[roleLabel]' => 'Testing',
+            'role[code]' => 'Testing',
+            'role[label]' => 'Testing',
+            'role[description]' => 'Testing',
         ]);
 
         self::assertResponseRedirects($this->path);
@@ -61,8 +62,9 @@ final class RoleControllerTest extends WebTestCase
     {
         $this->markTestIncomplete();
         $fixture = new Role();
-        $fixture->setRoleCode('My Title');
-        $fixture->setRoleLabel('My Title');
+        $fixture->setCode('My Title');
+        $fixture->setLabel('My Title');
+        $fixture->setDescription('My Title');
 
         $this->manager->persist($fixture);
         $this->manager->flush();
@@ -79,8 +81,9 @@ final class RoleControllerTest extends WebTestCase
     {
         $this->markTestIncomplete();
         $fixture = new Role();
-        $fixture->setRoleCode('Value');
-        $fixture->setRoleLabel('Value');
+        $fixture->setCode('Value');
+        $fixture->setLabel('Value');
+        $fixture->setDescription('Value');
 
         $this->manager->persist($fixture);
         $this->manager->flush();
@@ -88,24 +91,27 @@ final class RoleControllerTest extends WebTestCase
         $this->client->request('GET', sprintf('%s%s/edit', $this->path, $fixture->getId()));
 
         $this->client->submitForm('Update', [
-            'role[roleCode]' => 'Something New',
-            'role[roleLabel]' => 'Something New',
+            'role[code]' => 'Something New',
+            'role[label]' => 'Something New',
+            'role[description]' => 'Something New',
         ]);
 
         self::assertResponseRedirects('/role/');
 
         $fixture = $this->roleRepository->findAll();
 
-        self::assertSame('Something New', $fixture[0]->getRoleCode());
-        self::assertSame('Something New', $fixture[0]->getRoleLabel());
+        self::assertSame('Something New', $fixture[0]->getCode());
+        self::assertSame('Something New', $fixture[0]->getLabel());
+        self::assertSame('Something New', $fixture[0]->getDescription());
     }
 
     public function testRemove(): void
     {
         $this->markTestIncomplete();
         $fixture = new Role();
-        $fixture->setRoleCode('Value');
-        $fixture->setRoleLabel('Value');
+        $fixture->setCode('Value');
+        $fixture->setLabel('Value');
+        $fixture->setDescription('Value');
 
         $this->manager->persist($fixture);
         $this->manager->flush();

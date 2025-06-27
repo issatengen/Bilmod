@@ -1,0 +1,61 @@
+{# filepath: c:\xampp\htdocs\Bill\EcommerceSchoolProject\templates\cart\course.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Course Details{% endblock %}
+
+{% block body %}
+
+    <div class="container py-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="mb-0 h2">Cours de {{ selectedCourseId.designation }}</h1>
+        </div>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="" class="text-decoration-none">{{selectedCourseId.designation }}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Lecture du cours</li>
+            </ol>
+        </nav>
+    </div>
+    <hr class="my-1">
+
+    {# <div class=" container card mb-3 shadow-sm"> #}
+        <div class="me-3 ms-5">
+            {% if modules is not empty %}
+                <ul>
+                    {% for module in modules %}
+                        <div class="accordion" id="accordionPanelsStayOpenExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                                    {{ module.title }}
+                                </button>
+                                </h2>
+                                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+                                    <div class="accordion-body">
+                                        {% set relatedSubModules = subModules|filter(sm => sm.module.id == module.id) %}
+                                        {% if relatedSubModules|length > 0 %}
+                                            <ul>
+                                                {% for subModule in relatedSubModules %}
+                                                    <p class="fw-bold">{{ subModule.title }}</p>
+                                                    <div class="ms-2">
+                                                        <img src="{{ asset('upload_images/' ~ subModule.image) }}" alt="{{ subModule.title }}" class="img-fluid mb-2" style="max-width: 200px;">
+                                                        <p>{{ subModule.description }}</p>
+                                                    </div>
+                                                    <hr class="my-2">
+                                                {% endfor %}
+                                            </ul>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No modules found for this course.</p>
+            {% endif %}
+        </div>
+    {# </div> #}
+
+{% endblock %}

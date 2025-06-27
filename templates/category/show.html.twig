@@ -1,62 +1,47 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Category{% endblock %}
+{% block title %}Détails de la catégorie{% endblock %}
 
 {% block body %}
-
-    <main class="main shadow-sm p-3 mb-5 bg-light rounded container">
-        {{include('partials/adminHeader.html.twig') }}
-        <div class="containe">
-            <div class="row mb-4 mt-4">
-                <p class="h3">Détails de la catégorie.</p>
-                <div class="col-md-2">
-                    <h1 class="mb-4">
-                    <i class="bi bi-people-add-fill"></i>
-                    </h1>
+{{ include('partials/admin_navbar.html.twig') }}
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-7 col-md-9">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Détails de la catégorie</h4>
                 </div>
-                <div class="col-md-6">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-8">
-                    <a href="{{ path('app_category_index') }}" class="btn btn-light mb-3 shadow-sm text-decoration-none text-info">
-                        <i class="bi bi-arrow-left"></i>
-                        Back to list
-                    </a>
-
-                    <a href="{{ path('app_category_edit', {'id': category.id}) }}" class="btn btn-primary mb-3 shadow-sm">
-                        <i class="bi bi-pencil-square"></i>
-                        <span class="visually-hidden">Edit</span>
-                    </a>
-                    <table class="table">
+                <div class="card-body">
+                    <table class="table table-borderless mb-0">
                         <tbody>
                             <tr>
-                                <th>Id</th>
-                                <td>{{ category.id }}</td>
+                                <th>Code</th>
+                                <td>{{ category.code }}</td>
                             </tr>
                             <tr>
-                                <th>CategoryCode</th>
-                                <td>{{ category.categoryCode }}</td>
+                                <th>Libellé</th>
+                                <td>{{ category.label }}</td>
                             </tr>
                             <tr>
-                                <th>CategoryLabel</th>
-                                <td>{{ category.categoryLabel }}</td>
+                                <th>Description</th>
+                                <td>{{ category.description }}</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                <div class="col-md-4">
-                    <!-- Grid Item 3 -->
-                    <div class="mb-3">
-                        <div class="text-center pt-3">
-                            <i class="bi bi-trash text-danger" style="font-size: 5rem;"></i>
-                            <h5 class="card-title">Modifier ou supprimer</h5>
-                            <p class="card-text">Merci</p>
-                            {{ include('category/_delete_form.html.twig') }}
-                        </div>
+                <div class="card-footer bg-white d-flex justify-content-between">
+                    <a href="{{ path('app_category') }}" class="btn btn-outline-secondary">
+                        <i class="fa fa-arrow-left me-1"></i> Retour à la liste
+                    </a>
+                    <div>
+                        <a href="{{ path('app_category_edit', {'id': category.id}) }}" class="btn btn-outline-primary me-2">
+                            <i class="fa fa-edit me-1"></i> Modifier
+                        </a>
+                        {{ include('category/_delete_form.html.twig') }}
                     </div>
                 </div>
             </div>
         </div>
-    </main>
+    </div>
+</div>
 {% endblock %}

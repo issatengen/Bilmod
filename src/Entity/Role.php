@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\RoleRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: RoleRepository::class)]
@@ -16,77 +14,51 @@ class Role
     private ?int $id = null;
 
     #[ORM\Column(length: 10)]
-    private ?string $roleCode = null;
+    private ?string $code = null;
 
-    #[ORM\Column(length: 30)]
-    private ?string $roleLabel = null;
+    #[ORM\Column(length: 50)]
+    private ?string $label = null;
 
-    /**
-     * @var Collection<int, User>
-     */
-    #[ORM\OneToMany(targetEntity: User::class, mappedBy: 'role', orphanRemoval: true)]
-    private Collection $user;
-
-    public function __construct()
-    {
-        $this->user = new ArrayCollection();
-    }
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $description = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getRoleCode(): ?string
+    public function getCode(): ?string
     {
-        return $this->roleCode;
+        return $this->code;
     }
 
-    public function setRoleCode(string $roleCode): static
+    public function setCode(string $code): static
     {
-        $this->roleCode = $roleCode;
+        $this->code = $code;
 
         return $this;
     }
 
-    public function getRoleLabel(): ?string
+    public function getLabel(): ?string
     {
-        return $this->roleLabel;
+        return $this->label;
     }
 
-    public function setRoleLabel(string $roleLabel): static
+    public function setLabel(string $label): static
     {
-        $this->roleLabel = $roleLabel;
+        $this->label = $label;
 
         return $this;
     }
 
-    /**
-     * @return Collection<int, User>
-     */
-    public function getUser(): Collection
+    public function getDescription(): ?string
     {
-        return $this->user;
+        return $this->description;
     }
 
-    public function addUser(User $user): static
+    public function setDescription(?string $description): static
     {
-        if (!$this->user->contains($user)) {
-            $this->user->add($user);
-            $user->setRole($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUser(User $user): static
-    {
-        if ($this->user->removeElement($user)) {
-            // set the owning side to null (unless already changed)
-            if ($user->getRole() === $this) {
-                $user->setRole(null);
-            }
-        }
+        $this->description = $description;
 
         return $this;
     }

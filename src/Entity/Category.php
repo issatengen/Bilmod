@@ -16,20 +16,23 @@ class Category
     private ?int $id = null;
 
     #[ORM\Column(length: 10)]
-    private ?string $categoryCode = null;
+    private ?string $code = null;
 
-    #[ORM\Column(length: 30)]
-    private ?string $categoryLabel = null;
+    #[ORM\Column(length: 50)]
+    private ?string $label = null;
+
+    #[ORM\Column(length: 200, nullable: true)]
+    private ?string $description = null;
 
     /**
-     * @var Collection<int, Course>
+     * @var Collection<int, Item>
      */
-    #[ORM\OneToMany(targetEntity: Course::class, mappedBy: 'category', orphanRemoval: true)]
-    private Collection $category;
+    #[ORM\OneToMany(targetEntity: Item::class, mappedBy: 'category', orphanRemoval: true)]
+    private Collection $item;
 
     public function __construct()
     {
-        $this->category = new ArrayCollection();
+        $this->item = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -37,54 +40,66 @@ class Category
         return $this->id;
     }
 
-    public function getCategoryCode(): ?string
+    public function getCode(): ?string
     {
-        return $this->categoryCode;
+        return $this->code;
     }
 
-    public function setCategoryCode(string $categoryCode): static
+    public function setCode(string $code): static
     {
-        $this->categoryCode = $categoryCode;
+        $this->code = $code;
 
         return $this;
     }
 
-    public function getCategoryLabel(): ?string
+    public function getLabel(): ?string
     {
-        return $this->categoryLabel;
+        return $this->label;
     }
 
-    public function setCategoryLabel(string $categoryLabel): static
+    public function setLabel(string $label): static
     {
-        $this->categoryLabel = $categoryLabel;
+        $this->label = $label;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): static
+    {
+        $this->description = $description;
 
         return $this;
     }
 
     /**
-     * @return Collection<int, Course>
+     * @return Collection<int, Item>
      */
-    public function getCategory(): Collection
+    public function getItem(): Collection
     {
-        return $this->category;
+        return $this->item;
     }
 
-    public function addCategory(Course $category): static
+    public function addItem(Item $item): static
     {
-        if (!$this->category->contains($category)) {
-            $this->category->add($category);
-            $category->setCategory($this);
+        if (!$this->item->contains($item)) {
+            $this->item->add($item);
+            $item->setCategory($this);
         }
 
         return $this;
     }
 
-    public function removeCategory(Course $category): static
+    public function removeItem(Item $item): static
     {
-        if ($this->category->removeElement($category)) {
+        if ($this->item->removeElement($item)) {
             // set the owning side to null (unless already changed)
-            if ($category->getCategory() === $this) {
-                $category->setCategory(null);
+            if ($item->getCategory() === $this) {
+                $item->setCategory(null);
             }
         }
 

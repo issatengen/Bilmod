@@ -1,48 +1,40 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Category{% endblock %}
+{% block title %}Nouvelle Catégorie{% endblock %}
 
 {% block body %}
-
-    <main class="main shadow-sm p-3 mb-5 bg-light rounded container">
-            {{include('partials/adminHeader.html.twig') }}
-            <p class="h3">Ajouter une Categorie.</p>
-            <div class="container">
-                <a href="{{ path('app_category_index') }}" class="btn btn-light shadow-sm text-decoration-none text-info">
-                    <i class="bi bi-arrow-left"></i>
-                    Back to list
-                </a>                
-                <div class="row mt-4">
-                    <div class="col-md-2">
-                        <h1 class="mb-4">
-                        <i class="bi bi-people-add-fill"></i>
-                        </h1>
-                    </div>
-                    <div class="col-md-6">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 bg-white rounded shadow-sm">
-                        <!-- Grid Item 2 -->
-                        <div class="m-3">
-                            <div class="card-body bg-light p-2 shadow-sm">
-                                {{ include('category/_form.html.twig') }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <!-- Grid Item 3 -->
-                        <div class="mb-3">
-                            <div class="text-center pt-4">
-                                <i class="bi bi-bookmark-plus text-danger" style="font-size: 5rem;"></i>
-                                <h5 class="card-title">Ajouter une catégorie de formation</h5>
-                                <p class="card-text">Merci</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <a href="{{ path('app_category_index') }}">back to list</a>
+    {{ include('partials/admin_navbar.html.twig') }}
+    <div class="container py-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="mb-0 h2">Créer une nouvelle catégorie</h1>
+            <a href="{{ path('app_category') }}" class="btn btn-secondary">
+                <i class="fa fa-arrow-left me-1"></i> Retour à la liste
+            </a>
+        </div>
+    </div>
+    <hr class="my-1">
+    <div class="row container mt-2 mb-3 ms-2">
+        <div class="col-md-12 mb-4">
+            <p class="text-center text-muted">Remplissez le formulaire ci-dessous pour ajouter une nouvelle catégorie de cours.</p>
+        </div>
+        <div class="col-md-6 bg-light p-4 rounded shadow">
+            {{ form_start(form) }}
+            <div class="mb-3">
+                <label for="category_label" class="form-label">Nom de la catégorie</label>
+                {{ form_widget(form.label, {'attr': {'class': 'form-control'}}) }}
             </div>
-        </main>
+            <div class="mb-3">
+                <label for="category_description" class="form-label">Description</label>
+                {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <button class="btn btn-primary" type="submit">{{ button_label|default('Enregistrer') }}</button>
+            {{ form_end(form) }}
+        </div>
+        <div class="col-md-6 text-center">
+            <i class="fa-solid fa-folder-plus fa-5x text-primary"></i>
+            <h2 class="mt-5">Pourquoi créer une catégorie&nbsp;?</h2>
+            <p class="lead">Organisez les cours et services de votre plateforme de manière efficace.</p>
+            <p class="text-muted">Les catégories facilitent la recherche des cours et améliorent la navigation pour vos utilisateurs.</p>
+        </div>
+    </div>
 {% endblock %}

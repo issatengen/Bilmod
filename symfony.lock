@@ -1,4 +1,13 @@
 {
+    "doctrine/deprecations": {
+        "version": "1.1",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "1.0",
+            "ref": "87424683adc81d7dc305eefec1fced883084aab9"
+        }
+    },
     "doctrine/doctrine-bundle": {
         "version": "2.14",
         "recipe": {
@@ -27,17 +36,30 @@
         ]
     },
     "phpunit/phpunit": {
-        "version": "9.6",
+        "version": "11.5",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
-            "version": "9.6",
-            "ref": "6a9341aa97d441627f8bd424ae85dc04c944f8b4"
+            "version": "11.1",
+            "ref": "c6658a60fc9d594805370eacdf542c3d6b5c0869"
         },
         "files": [
             "./.env.test",
-            "./phpunit.xml.dist",
-            "./tests/bootstrap.php"
+            "./phpunit.dist.xml",
+            "./tests/bootstrap.php",
+            "./bin/phpunit"
+        ]
+    },
+    "symfony/apache-pack": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "1.0",
+            "ref": "5d454ec6cc4c700ed3d963f3803e1d427d9669fb"
+        },
+        "files": [
+            "./public/.htaccess"
         ]
     },
     "symfony/asset-mapper": {
@@ -180,21 +202,6 @@
             "./config/packages/notifier.yaml"
         ]
     },
-    "symfony/phpunit-bridge": {
-        "version": "7.2",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "main",
-            "version": "6.3",
-            "ref": "a411a0480041243d97382cac7984f7dce7813c08"
-        },
-        "files": [
-            "./.env.test",
-            "./bin/phpunit",
-            "./phpunit.xml.dist",
-            "./tests/bootstrap.php"
-        ]
-    },
     "symfony/routing": {
         "version": "7.2",
         "recipe": {
@@ -242,7 +249,7 @@
             "repo": "github.com/symfony/recipes",
             "branch": "main",
             "version": "6.3",
-            "ref": "e28e27f53663cc34f0be2837aba18e3a1bef8e7b"
+            "ref": "620a1b84865ceb2ba304c8f8bf2a185fbf32a843"
         },
         "files": [
             "./config/packages/translation.yaml",

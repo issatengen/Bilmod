@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New LesonModule{% endblock %}
+
+{% block body %}
+    {{ include('partials/admin_navbar.html.twig') }}
+    <div class="container py-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="mb-0 h2">Créer un module qu cours</h1>
+            <a href="" class="btn btn-secondary">
+                <i class="fa fa-arrow-left me-1"></i>
+            </a>
+        </div>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="" class="text-decoration-none">{{cource.description }}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Liste des modules</li>
+            </ol>
+        </nav>
+    </div>
+    <hr class="my-1">
+
+    {{ include('leson_module/_form.html.twig') }}
+
+    <a href="{{ path('app_leson_module_index') }}">back to list</a>
+{% endblock %}

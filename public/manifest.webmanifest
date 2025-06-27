@@ -1,0 +1,88 @@
+{
+  "name": "MOBIL - Online School",
+  "short_name": "MOBIL",
+  "description": "Ecole en ligne",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8f9fc",
+  "theme_color": "#4e73df",
+  "orientation": "portrait-primary",
+  "display_override": ["window-controls-overlay"],
+  "icons": [
+    {
+      "src": "public/upload_images/logo.PNG",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "public/upload_images/logo.PNG",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "public/upload_images/logo.PNG",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "public/upload_images/logo.PNG",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "images/PrPro_1280X720A.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "description": "Dashboard view showing task statistics"
+    },
+    {
+      "src": "images/PrPro_1280X720B.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "description": "Task list with completion options"
+    }
+  ],
+  "categories": ["productivity", "organization"],
+  "shortcuts": [
+    {
+      "name": "Today's Tasks",
+      "short_name": "Today",
+      "description": "View today's task list",
+      "url": "taskList.php",
+      "icons": [
+        {
+          "src": "images/PrPro.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Add New Task",
+      "short_name": "Add Task",
+      "description": "Create a new task",
+      "url": "taskList.php",
+      "icons": [
+        {
+          "src": "images/PrPro.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "related_applications": [
+    {
+      "platform": "web",
+      "url": "https://pdpro.trustfulglobal.com"
+    }
+  ],
+  "prefer_related_applications": false,
+  "scope": "/",
+  "dir": "ltr",
+  "lang": "fr-FR"
+}

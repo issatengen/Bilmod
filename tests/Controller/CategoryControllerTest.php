@@ -48,8 +48,9 @@ final class CategoryControllerTest extends WebTestCase
         self::assertResponseStatusCodeSame(200);
 
         $this->client->submitForm('Save', [
-            'category[categoryCode]' => 'Testing',
-            'category[categoryLabel]' => 'Testing',
+            'category[code]' => 'Testing',
+            'category[label]' => 'Testing',
+            'category[description]' => 'Testing',
         ]);
 
         self::assertResponseRedirects($this->path);
@@ -61,8 +62,9 @@ final class CategoryControllerTest extends WebTestCase
     {
         $this->markTestIncomplete();
         $fixture = new Category();
-        $fixture->setCategoryCode('My Title');
-        $fixture->setCategoryLabel('My Title');
+        $fixture->setCode('My Title');
+        $fixture->setLabel('My Title');
+        $fixture->setDescription('My Title');
 
         $this->manager->persist($fixture);
         $this->manager->flush();
@@ -79,8 +81,9 @@ final class CategoryControllerTest extends WebTestCase
     {
         $this->markTestIncomplete();
         $fixture = new Category();
-        $fixture->setCategoryCode('Value');
-        $fixture->setCategoryLabel('Value');
+        $fixture->setCode('Value');
+        $fixture->setLabel('Value');
+        $fixture->setDescription('Value');
 
         $this->manager->persist($fixture);
         $this->manager->flush();
@@ -88,24 +91,27 @@ final class CategoryControllerTest extends WebTestCase
         $this->client->request('GET', sprintf('%s%s/edit', $this->path, $fixture->getId()));
 
         $this->client->submitForm('Update', [
-            'category[categoryCode]' => 'Something New',
-            'category[categoryLabel]' => 'Something New',
+            'category[code]' => 'Something New',
+            'category[label]' => 'Something New',
+            'category[description]' => 'Something New',
         ]);
 
         self::assertResponseRedirects('/category/');
 
         $fixture = $this->categoryRepository->findAll();
 
-        self::assertSame('Something New', $fixture[0]->getCategoryCode());
-        self::assertSame('Something New', $fixture[0]->getCategoryLabel());
+        self::assertSame('Something New', $fixture[0]->getCode());
+        self::assertSame('Something New', $fixture[0]->getLabel());
+        self::assertSame('Something New', $fixture[0]->getDescription());
     }
 
     public function testRemove(): void
     {
         $this->markTestIncomplete();
         $fixture = new Category();
-        $fixture->setCategoryCode('Value');
-        $fixture->setCategoryLabel('Value');
+        $fixture->setCode('Value');
+        $fixture->setLabel('Value');
+        $fixture->setDescription('Value');
 
         $this->manager->persist($fixture);
         $this->manager->flush();

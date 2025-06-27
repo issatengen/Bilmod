@@ -1,87 +1,62 @@
-<footer id="footer" class="footer position-relative light-background ">
-
-    <div class="container footer-top">
-      <div class="row gy-4">
-        <div class="col-lg-4 col-md-6 footer-about">
-          <a href="index.html" class="logo d-flex align-items-center">
-            <span class="sitename">MOBIL</span>
-          </a>
-          <div class="footer-contact pt-3">
-            <p>Bonabéri-Douala Cameroun</p>
-            <p>Gare routière Face Congelcam</p>
-            <p class="mt-3"><strong>Phone:</strong> <span>+237 678 936 767 / 680 369 191</span></p>
-            <p><strong>Email:</strong> <span>issatengen12@gmail.com</span></p>
-          </div>
-          <div class="social-links d-flex mt-4">
-            <a href=""><i class="bi bi-twitter-x"></i></a>
-            <a href=""><i class="bi bi-facebook"></i></a>
-            <a href=""><i class="bi bi-instagram"></i></a>
-            <a href=""><i class="bi bi-linkedin"></i></a>
-          </div>
+<footer class="site-footer stiky-footer" style="background:#222; color:#fff; padding: 2rem 0; text-align:center;">
+    <div class="container">
+        <div class="row" style="justify-content: space-between; align-items: flex-start; flex-wrap: wrap;">
+            <div class="col-md-4" style="margin-bottom: 1rem; text-align: left;">
+                <h5 style="color: #fff;">À propos</h5>
+                <p style="color: #ccc; font-size: 0.95rem;">
+                   MOBIL est  spécialisé dans la formation en ligne. Nous proposons une large gamme de programmes pour permettre aux étudiants d’acquérir des compétences pratiques et des connaissances adaptées au monde professionnel.
+                </p>
+            </div>
+            <div class="col-md-4" style="margin-bottom: 1rem; text-align: left;">
+                <h5 style="color: #fff;">Contact</h5>
+                <ul style="list-style: none; padding: 0; color: #ccc; font-size: 0.95rem;">
+                    <li>
+                        <i class="fas fa-map-marker-alt"></i> Bonabéri, Douala-Cameroun
+                    </li>
+                    <li>
+                        <i class="fas fa-phone"></i> +237 680 369 185 / +237 698 404 117
+                    </li>
+                    <li>
+                        <i class="fas fa-envelope"></i> <a href="mailto:info@MOBIL.com" style="color:#fff; text-decoration:none;">info@MOBIL.com</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-4" style="margin-bottom: 1rem; text-align: left;">
+                <h5 style="color: #fff;">Liens rapides</h5>
+                <ul style="list-style: none; padding: 0;">
+                    <li><a href="/about" style="color:#fff; text-decoration:none;">À propos</a></li>
+                    <li><a href="/contact" style="color:#fff; text-decoration:none;">Contact</a></li>
+                    <li><a href="/privacy-policy" style="color:#fff; text-decoration:none;">Politique de confidentialité</a></li>
+                    <li><a href="/terms" style="color:#fff; text-decoration:none;">Conditions d’utilisation</a></li>
+                </ul>
+            </div>
         </div>
-
-        <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Liens importants</h4>
-          <ul>
-            <li><a href="#">Accueil</a></li>
-            <li><a href="#">A propos</a></li>
-            <li><a href="#">Services</a></li>
-            {# <li><a href="#">Terms of service</a></li>
-            <li><a href="#">Privacy policy</a></li> #}
-          </ul>
+        <hr style="border-color:#444; margin:1.5rem 0;">
+        <div class="row" style="justify-content: space-between; align-items: center;">
+            <div class="col-md-6" style="text-align: left;">
+                <span style="color:#ccc;">&copy; {{ "now"|date("Y") }} MOBIL. Tous droits réservés.</span>
+            </div>
+            <div class="col-md-6" style="text-align: center;">
+                <span style="margin-right: 1rem; color:#ccc;">Suivez-nous :</span>
+                <a href="https://github.com/issatengen" target="_blank" style="color:#fff; margin:0 0.5rem; text-decoration:none;">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://twitter.com/issatengen" target="_blank" style="color:#fff; margin:0 0.5rem; text-decoration:none;">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://facebook.com/issatengen" target="_blank" style="color:#fff; margin:0 0.5rem; text-decoration:none;">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="mailto:issatengen12@gmail.com" style="color:#fff; margin:0 0.5rem; text-decoration:none;">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
         </div>
-
-        <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Our Services</h4>
-          <ul>
-            <li><a href="#">Auto école</a></li>
-            <li><a href="#">Formation en Sécrétariat</a></li>
-            <li><a href="#">Formation en infographie</a></li>
-            <li><a href="#">Formation en infographie</a></li>
-            <li><a href="#">Formation en import / export</a></li>
-            <li><a href="#">Formation en développement web</a></li>
-            <li><a href="#">Conception de sites et applications</a></li>
-            <li><a href="#">Formation en marketing digital</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-4 col-md-12 footer-newsletter">
-          <h4>Newsletter</h4>
-          <p>Abonnez-vous à notre newsletter et recevez les dernières nouvelles sur nos produits et services&nbsp;!</p>
-          <form action="forms/newsletter.php" method="post" class="php-email-form">
-            <div class="newsletter-form"><input type="email" name="email"><input type="submit" value="Subscribe"></div>
-            <div class="loading">Chargement</div>
-            <div class="error-message"></div>
-            <div class="sent-message">Votre demande d'abonnement a été envoyée. Merci&nbsp;!</div>
-          </form>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="container copyright text-center mt-4">
-      <p>© <span id="year"></span> <span>Copyright</span> <strong class="px-1 sitename">MOBIL   </strong> <span>All Rights Reserved</span></p>
-    </div>
-    <div class="container footer-bottom bg-dark clearfix pt-4 pb-4">
-        <p class="text-light">Designed with <i class="bi bi-heart-fill text-danger"></i> by <span class="h5">{{ 'Issa Tengen'|upper }}</span></p>
-        <div class="social-links d-flex mt-4">
-            <a href="mailto:issatengen12@gmail.com">
-                <img src="{{ asset('images/logixOne.jpeg') }}" alt="Issa Tengen" class="rounded-circle shadow-sm" style="width: 40px; height: 40px;">
-            </a>
-            <a href="https://www.linkedin.com/in/issa-tengen-81140427a/">
-                <i class="bi bi-linkedin"></i>
-            </a>
-            <a href="https://wa.me/+237680369185?text=Hello Can you build a website application for me" class="text-white">
-                <i class="bi bi-whatsapp text-secondary"></i>
-            </a>
-            <a href="https://github.com/issatengen" class="text-white">
-                <i class="bi bi-github text-secondary"></i>
-            </a>
+        <div style="text-align:center; margin-top:1rem; color:#888; font-size:0.9rem;">
+            Conçu par <a href="mailto:issatengen12@gmail.com" style="color:#fff; text-decoration:none;">Issa Tengen</a>
         </div>
     </div>
+</footer>
 
-  </footer>
-  <script>
-    // Set the current year in the footer
-    document.getElementById('year').textContent = new Date().getFullYear();
-</script>
+{# Optionnel : inclure Font Awesome pour les icônes #}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">

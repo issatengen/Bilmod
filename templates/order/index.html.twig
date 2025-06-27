@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Order index{% endblock %}
+
+{% block body %}
+
+{{ include('partials/admin_navbar.html.twig') }}
+<div class="container py-4">
+    <div class="container py-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="mb-0 h2">Candidatures</h1>
+            <a href="" class="btn btn-secondary">
+                <i class="fa fa-arrow-left me-1"></i> Back to home
+            </a>
+        </div>
+    </div>
+    <hr class="my-1">
+    <div class="card shadow-sm">
+        <div class="card-body p-0">
+            <table class="table table-hover mb-0">
+                <thead class="table-primary">
+                    <tr>
+                        <th>Id</th>
+                        <th>Code</th>
+                        <th>Date</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for order in orders %}
+                    {% if order %}
+                        
+                        <tr>
+                            <td>{{ order.id }}</td>
+                            <td>{{ order.code }}</td>
+                            <td>{{ order.date ? order.date|date('Y-m-d H:i:s') : '' }}</td>
+                            <td class="text-center">
+                                <a href="{{ path('app_order_show', {'id': order.id}) }}" class="btn btn-outline-secondary btn-sm me-1">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                                <a href="{{ path('app_order_edit', {'id': order.id}) }}" class="btn btn-outline-primary btn-sm">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="5" class="text-center text-muted">No records found</td>
+                    </tr>
+                    {% endif %}
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

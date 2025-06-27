@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SubModule index{% endblock %}
+
+{% block body %}
+    {{ include('partials/admin_navbar.html.twig') }}
+    <div class="container py-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="mb-0 h2">Sous-modules</h1>
+            <a href="" class="btn btn-secondary">
+                <i class="fa fa-arrow-left me-1"></i> Voir le cours
+            </a>
+        </div>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="" class="text-decoration-none">{{module.title }}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Liste des sous-modules</li>
+            </ol>
+        </nav>
+    </div>
+    <hr class="my-1">
+
+    <div class="container mb-2 card shadow-sm">
+        <div class="card-body p-0">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Image</th>
+                        <th scope="col" class="text-end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for sub_module in sub_modules %}
+                    <tr>
+                        <td class="fw-semibold">{{ sub_module.title }}</td>
+                        <td>{{ sub_module.description|length > 60 ? sub_module.description|slice(0, 60) ~ '...' : sub_module.description }}</td>
+                        <td>
+                            {% if sub_module.image %}
+                                <img src="{{ asset('upload_images/' ~ sub_module.image) }}" alt="Image" class="img-thumbnail" style="max-width: 80px; max-height: 60px;">
+                            {% else %}
+                                <span class="text-muted">No image</span>
+                            {% endif %}
+                        </td>
+                        <td class="text-end">
+                            <a href="{{ path('app_sub_module_show', {'id': sub_module.id}) }}" class="btn btn-sm btn-outline-primary me-1">
+                                <i class="fa fa-eye"></i>
+                            </a>
+                            <a href="{{ path('app_sub_module_edit', {'id': sub_module.id}) }}" class="btn btn-sm btn-outline-secondary">
+                                <i class="fa fa-edit"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4" class="text-center text-muted py-4">No records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    {# <a href="{{ path('app_sub_module_new') }}">Create new</a> #}
+{% endblock %}

@@ -6,53 +6,53 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
+use App\Entity\Role; // Add this line
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-class User
+#[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 10)]
-    private ?string $userCode = null;
+    #[ORM\Column(length: 180)]
+    private ?string $email = null;
+
+    // /**
+    //  * @var list<string> The user roles
+    //  */
+    // #[ORM\Column]
+    // private array $roles = [];
+
+    /**
+     * @var string The hashed password
+     */
+    #[ORM\Column]
+    private ?string $password = null;
+
+    #[ORM\Column(length: 10, nullable: true)]
+    private ?string $code = null;
 
     #[ORM\Column(length: 100)]
-    private ?string $userFirstName = null;
+    private ?string $name = null;
 
-    #[ORM\Column(length: 100)]
-    private ?string $userName = null;
-
-    #[ORM\Column(length: 100)]
-    private ?string $userEmail = null;
-
-    #[ORM\Column(length: 150, nullable: true)]
-    private ?string $userphoto = null;
-
-    #[ORM\Column(length: 100)]
-    private ?string $userPassword = null;
-
-    #[ORM\ManyToOne(inversedBy: 'user')]
+    #[ORM\ManyToOne(targetEntity: Role::class, inversedBy: 'users')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Role $role = null;
 
     /**
-     * @var Collection<int, Student>
+     * @var Collection<int, Order>
      */
-    #[ORM\OneToMany(targetEntity: Student::class, mappedBy: 'user', orphanRemoval: true)]
-    private Collection $student;
-
-    /**
-     * @var Collection<int, Leson>
-     */
-    #[ORM\OneToMany(targetEntity: Leson::class, mappedBy: 'user')]
-    private Collection $user;
+    #[ORM\OneToMany(targetEntity: Order::class, mappedBy: 'user', orphanRemoval: true)]
+    private $orders;
 
     public function __construct()
     {
-        $this->student = new ArrayCollection();
-        $this->user = new ArrayCollection();
+        $this->orders = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public function getId(): ?int
@@ -60,74 +60,95 @@ class User
         return $this->id;
     }
 
-    public function getUserCode(): ?string
+    public function getEmail(): ?string
     {
-        return $this->userCode;
+        return $this->email;
     }
 
-    public function setUserCode(string $userCode): static
+    public function setEmail(string $email): static
     {
-        $this->userCode = $userCode;
+        $this->email = $email;
 
         return $this;
     }
 
-    public function getUserFirstName(): ?string
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
     {
-        return $this->userFirstName;
+        return (string) $this->email;
     }
 
-    public function setUserFirstName(string $userFirstName): static
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
     {
-        $this->userFirstName = $userFirstName;
+        // Always return at least ROLE_USER
+        $roles = [];
+        if ($this->role && $this->role->getCode()) {
+            $code = $this->role->getCode();
+            // Ensure the code is prefixed with ROLE_
+            if (str_starts_with($code, 'ROLE_')) {
+                $roles[] = $code;
+            } else {
+                $roles[] = 'ROLE_' . strtoupper($code);
+            }
+        }
+        // Guarantee at least ROLE_USER
+        if (!in_array('ROLE_USER', $roles)) {
+            $roles[] = 'ROLE_STUDENT'; // Default role if no specific role is set
+        }
+        return $roles;
+    }
+
+    /**
+     * @see PasswordAuthenticatedUserInterface
+     */
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): static
+    {
+        $this->password = $password;
 
         return $this;
     }
 
-    public function getUserName(): ?string
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials(): void
     {
-        return $this->userName;
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
 
-    public function setUserName(string $userName): static
+    public function getCode(): ?string
     {
-        $this->userName = $userName;
+        return $this->code;
+    }
+
+    public function setCode(?string $code): static
+    {
+        $this->code = $code;
 
         return $this;
     }
 
-    public function getUserEmail(): ?string
+    public function getName(): ?string
     {
-        return $this->userEmail;
+        return $this->name;
     }
 
-    public function setUserEmail(string $userEmail): static
+    public function setName(string $name): static
     {
-        $this->userEmail = $userEmail;
-
-        return $this;
-    }
-
-    public function getUserphoto(): ?string
-    {
-        return $this->userphoto;
-    }
-
-    public function setUserphoto(?string $userphoto): static
-    {
-        $this->userphoto = $userphoto;
-
-        return $this;
-    }
-
-    public function getUserPassword(): ?string
-    {
-        return $this->userPassword;
-    }
-
-    public function setUserPassword(string $userPassword): static
-    {
-        $this->userPassword = $userPassword;
+        $this->name = $name;
 
         return $this;
     }
@@ -145,59 +166,29 @@ class User
     }
 
     /**
-     * @return Collection<int, Student>
+     * @return Collection<int, Order>
      */
-    public function getStudent(): Collection
+    public function getOrders()
     {
-        return $this->student;
+        return $this->orders;
     }
 
-    public function addStudent(Student $student): static
+    public function addOrder(Order $order): static
     {
-        if (!$this->student->contains($student)) {
-            $this->student->add($student);
-            $student->setUser($this);
+        if (!$this->orders->contains($order)) {
+            $this->orders[] = $order;
+            $order->setUser($this);
         }
 
         return $this;
     }
 
-    public function removeStudent(Student $student): static
+    public function removeOrder(Order $order): static
     {
-        if ($this->student->removeElement($student)) {
+        if ($this->orders->removeElement($order)) {
             // set the owning side to null (unless already changed)
-            if ($student->getUser() === $this) {
-                $student->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Leson>
-     */
-    public function getUser(): Collection
-    {
-        return $this->user;
-    }
-
-    public function addUser(Leson $user): static
-    {
-        if (!$this->user->contains($user)) {
-            $this->user->add($user);
-            $user->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUser(Leson $user): static
-    {
-        if ($this->user->removeElement($user)) {
-            // set the owning side to null (unless already changed)
-            if ($user->getUser() === $this) {
-                $user->setUser(null);
+            if ($order->getUser() === $this) {
+                $order->setUser(null);
             }
         }
 

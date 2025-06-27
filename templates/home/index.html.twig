@@ -1,0 +1,358 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Welcome to Mobil !{% endblock %}
+
+{% block body %}
+<h1 class="text-center my-4 animate__animated animate__fadeInDown text-danger fw-bolder">Bienvenue sur MOBIL</h1>
+<p class="text-center animate__animated animate__fadeIn">Votre solution unique pour tous vos besoins d'apprentissage mobile.</p>
+<!-- Section Héros avec Vidéo de Fond -->
+  <section class="hero-section text-center py-5 bg-primary text-white animate__animated animate__fadeIn" style="position: relative; overflow: hidden; min-height: 500px;">
+    <div style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; overflow: hidden;">
+      <video autoplay="" muted="" loop="" playsinline="" class="video-background" style="width: 100vw; height: 56.25vw; min-height: 100%; min-width: 100%; position: absolute; top: 0; left: 0; pointer-events: none; filter: brightness(0.4);">
+        <source src="{{ asset('upload_images/video-2.mp4') }}" type="video/mp4">
+      </video>
+      </iframe>
+      <div style="position: absolute; left:0; top:0; width:100%; height:100%; background: rgba(0,0,0,0.4); z-index: 1;"></div>
+    </div>
+    <div class="container" style="position: relative; z-index: 2;">
+      <h2 class="display-4 mb-3 animate__animated animate__zoomIn text-white fw-bolder gf-1">Donnez de l'élan à votre parcours d'apprentissage</h2>
+      <p class="lead mb-4 animate__animated animate__fadeInUp">Découvrez des cours, suivez vos progrès et atteignez vos objectifs avec MOBIL.</p>
+      <a href="#courses" class="btn btn-light btn-lg animate__animated animate__pulse animate__infinite">Voir les cours</a>
+      <!-- Carrousel d'images Héros -->
+      <div class="d-flex flex-row justify-content-center">
+        <!-- Nouveau Carrousel Gauche -->
+        <div id="leftHeroCarousel" class="carousel slide me-4 animate__animated animate__fadeInLeft animate__delay-1s" data-bs-ride="carousel" style="max-width: 300px;">
+          <div class="carousel-inner rounded shadow">
+        <div class="carousel-item active">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaq8IsbYtJ134DtWyjp7sfIwUjYCxXXn-YeQ&s" class="d-block w-100" alt="Diapositive Gauche 1" style="filter: brightness(0.7);">
+          <div class="carousel-caption d-none d-md-block">
+            <h6>Formateurs experts</h6>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" class="d-block w-100" alt="Diapositive Gauche 2" style="filter: brightness(0.7);">
+          <div class="carousel-caption d-none d-md-block">
+            <h6>Apprentissage flexible</h6>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="https://images.unsplash.com/photo-1517520287167-4bbf64a00d66?auto=format&fit=crop&w=400&q=80" class="d-block w-100" alt="Diapositive Gauche 3" style="filter: brightness(0.7);">
+          <div class="carousel-caption d-none d-md-block">
+            <h6>Soutien communautaire</h6>
+          </div>
+        </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#leftHeroCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Précédent</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#leftHeroCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Suivant</span>
+          </button>
+        </div>
+
+        <!-- Carrousel Principal -->
+        <div id="heroCarousel" class="carousel slide mt-4 animate__animated animate__fadeInUp animate__delay-1s" data-bs-ride="carousel" style="max-width: 500px; margin-left: 0;">
+          <div class="carousel-inner rounded shadow">
+        <div class="carousel-item active">
+          <img src="https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=800&q=80" class="d-block w-100 animate__animated animate__pulse animate__infinite animate__delay-1s" alt="Diapositive Héros 1" style="filter: brightness(0.5);">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Apprenez à tout moment, partout</h5>
+            <p>Accédez à nos cours sur n'importe quel appareil, à votre convenance.</p> 
+            <a href="{{ path('app_login') }}" class="btn btn-info animate__animated animate__fadeInLeft animate__delay-1s">
+              <i class="fa fa-box-arrow-right"></i>
+              Connexion
+            </a>
+            <a href="" class="btn btn-warning animate__animated animate__fadeInLeft animate__delay-1s">
+              <i class="fa fa-toggles2"></i>
+              S'inscrire
+            </a>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" class="d-block w-100 animate__animated animate__pulse animate__infinite" alt="Diapositive Héros 3" style="filter: brightness(0.5);">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Atteignez vos objectifs</h5>
+            <p>Suivez vos progrès et obtenez des certificats.</p>
+            <a href="{{ path('app_login') }}" class="btn btn-info">
+              <i class="bi bi-box-arrow-right"></i>
+              Connexion
+            </a>
+            <a href="" class="btn btn-warning">
+              <i class="bi bi-toggles2"></i>
+              S'inscrire
+            </a>
+          </div>
+        </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Précédent</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Suivant</span>
+          </button>
+        </div>
+
+        <!-- Nouveau Carrousel Droit -->
+        <div id="rightHeroCarousel" class="carousel slide ms-4 animate__animated animate__fadeInRight animate__delay-1s" data-bs-ride="carousel" style="max-width: 300px;">
+          <div class="carousel-inner rounded shadow">
+        <div class="carousel-item active">
+          <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80" class="d-block w-100" alt="Diapositive Droite 1" style="filter: brightness(0.7);">
+          <div class="carousel-caption d-none d-md-block">
+            <h6>Développement mobile</h6>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=400&q=80" class="d-block w-100" alt="Diapositive Droite 2" style="filter: brightness(0.7);">
+          <div class="carousel-caption d-none d-md-block">
+            <h6>Design UI/UX</h6>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80" class="d-block w-100" alt="Diapositive Droite 3" style="filter: brightness(0.7);">
+          <div class="carousel-caption d-none d-md-block">
+            <h6>Programmation Android</h6>
+          </div>
+        </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#rightHeroCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Précédent</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#rightHeroCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Suivant</span>
+          </button>
+        </div>
+      </div>
+      <!-- Bootstrap Carousel requires Bootstrap JS and CSS -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    </div>
+  </section>
+
+  <!-- Section Partenaires -->
+  <section class="partners-section py-5 bg-light shadow animate__animated animate__fadeIn">
+    <div class="container">
+      <h3 class="text-center text-danger fw-bolder mb-4 animate__animated animate__fadeInDown">Nos partenaires</h3>
+      <div class="partners-carousel-wrapper position-relative">
+        <button class="btn btn-light partners-scroll-btn start-0" id="partners-scroll-left" style="position: absolute; top: 50%; transform: translateY(-50%); z-index: 2;">
+          <i class="fa fa-chevron-left"></i>
+        </button>
+        <div class="partners-carousel d-flex flex-row overflow-auto" id="partners-carousel" style="scroll-behavior: smooth; gap: 2rem; padding: 1rem 2.5rem;">
+          <div class="flex-shrink-0 text-center" style="width: 140px;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft" class="img-fluid" style="max-height: 60px; filter: grayscale(100%);">
+          </div>
+          <div class="flex-shrink-0 text-center" style="width: 140px;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" class="img-fluid" style="max-height: 60px; filter: grayscale(100%);">
+          </div>
+          <div class="flex-shrink-0 text-center" style="width: 140px;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Logo_TV_2015.png" alt="TechVision" class="img-fluid" style="max-height: 60px; filter: grayscale(100%);">
+          </div>
+          <div class="flex-shrink-0 text-center" style="width: 140px;">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbVHFH9_bwUgXAoMrAPeYoPBU1wq2fWRdDQHFc5k9DIPg7hSdoq0zHeUA&usqp=CAE&s" alt="UNESCO" class="img-fluid" style="max-height: 60px; filter: grayscale(100%);">
+          </div>
+          <div class="flex-shrink-0 text-center" style="width: 140px;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM" class="img-fluid" style="max-height: 60px; filter: grayscale(100%);">
+          </div>
+          <div class="flex-shrink-0 text-center" style="width: 140px;">
+            <img src="data:image/png;base64,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" alt="AWS" class="img-fluid" style="max-height: 60px; filter: grayscale(100%);">
+          </div>
+          <div class="flex-shrink-0 text-center" style="width: 140px;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" class="img-fluid" style="max-height: 60px; filter: grayscale(100%);">
+          </div>
+          <div class="flex-shrink-0 text-center" style="width: 140px;">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAAD/CAMAAACdMFkKAAAAkFBMVEX////oISfnAADnAA32u7zoGB/oHCPnFBztZGfnAAf50NH2vb7qOz/97/D4ycr62dnnDRfucnXubG/sX2LpLDH/+vv74eLxkpP3w8PnBhLqP0PwhIbzoaP509T+9fXyl5nveXv86ensVFjpJiz1sLHpMzjrSEzxjI70qarwgIL0pqfrTFDub3LxiIvsWFvtZ2o6h04EAAALiklEQVR4nO2daZ+6LheHJxTIVpsys9XK1ll6/+/uxmwGRTbL+Sn/2+vZfMaQr8DhcA7o21u59KermR0t/UX4Od4de4fJZN9q7SeHw/z43R6FC38Z2YPhtl/ybcvBmw6iTdjuOYBgBYHrYgwhQq0UCEGIsesGVnLV/HbZRJ2pV3XdY/pDezM6kno5gYthptoqEMRurMjdhctuZWrWq+hrHJCn6uJCtc8DcWABANu+PfynYvqD5ec+FgBfqz+jxiViDqNrZ/33CrzV9d0lPejVFhCBMGngSXge/p2EfncxByDAfyOA1bLzB+V3sb59OZBe9EdtwAO6DpifZuX1MG/2RST8VTeSgYiUo98pQcN0uQPO062AUjwtBYB2tH1Fw2CBQFDAHMVTQWDdpzfHsQIX7ie/tPDjP8CJ58dCkwwMQM9fPSXBs991mwEllt9yD+PwtIy6nel22+eOT6+/3Q4HxFn5Cr8PpMfEs47eYyKNgi+DghrW0ZiMBo3CceAAZ99eLO3VtrBhWW879uayg46mBceOM5ppl+7ZRIPqGd0FBPPLefa6H7GezpZhz9KZT4mSUKtNZu9KDZAoaL0vBy+NuxzetLsZY9KRFXfHwF0oxslwETjSvoSwBXB7OfgzR3s783eBao7FYLIRPsP+8gBchYRJGE3/SgFleH6HcilkxO9s7m/HIJAMM2LzWqEt60bbYcc+L32tMXjdXKPuaipr02lEnDeZtYcW8Dm/exeqR9ixxmdBK5AV0/l0+0CPCSEAGl7dGbhBbKKJF7gb+VFH9HSGy6PMYFpX3m+AqPlaC66X5g2jU/twXzFB+tQQUrpBHXqn+4RJ5o/ebWNz9a/tkQsE0xfg2shjvgVRAA4bTvH9weZGBJD652+AjwoVW07nRThebcxH1xWnap1Fi6fE/eIWP2Cag7RDb5nvSmTFcYjNonAgBSO5jIOww9899PmFY0VWXy3A9i4gGFq9dM0w2PtscV5ns4tXHIoZFyxlKsYya/jQgtvXXB/oXFwn/QBwKLjB7Lc5oBNc2ClmSHxdoLduBZKJ1nd0SiCGMbjl/NrZLWVNgdBsJs3BscnrbgiL+LqO8BY235DwIK1y+GIeyPrce3Qu9yJ8UvHogA70s5XYnr+1/MQUaCJwtATmUFgOmTre7azpG4ZW3CSikRHzEbANsb1+FFpyPMDf3PLXT6yeiO8wzirxzsTG8Ka+H1afmVG9jnbPaIixFrzyj8/FI8iEfetmChp8a/vVZEAp/XUxIMqXOAqeLg477uWJqM/WRzlDXVBHzpteFhsYOSWgdy4WKBmMRQ6APggzg3D2moq4yMAJtZvEu05AGWFN2MsUO9WaMFRg8NEV1DvLIpA57EVwb+mHMympVAj2Zw0ZL4xDlvSCYFde0JRnPfKIXbfiN/ztAAurtEKDUKtX9a3y4pzgMQ9FLw/vX5QLgR9Wuve858HcOwF/mkStu4ns8Et0H2AMtad3uNc2ukrTeI9SATyZ79rh4uT7m81y+cnVgT/i9uVbb7wh+P7pK3z/PvZaWqkrBAsEZboSHbG7dlycZ8N11h/o8A1q3JN7/JbKGuQ3r7/qbkbEXZIYAwgLBccGQPBUMDj4vIUmeeQC6eD8yV8o4XfurfuzEDqiu+8LBsiG3AUSAjdxwG4vuLcreLruRliUPec2bTAvnLXpz/Pzh3uQRR3HBQ21IwtpRRxzCRSLfD4h20uCsfR6X7HIztVK2s23E+apIMALS2lgZ5bwLbxTXF5whnPlxfWzsZdg8nR2tr9LN4ir6JgFF6jwQ3H39GSDgHjprUEU/PYUS+WQecVcWKys2O3XNliHF/OY6/DHaVf0AcK8kBMTKP3UH2/CdcQ2TZvh7i5EGN2ijAo5sUD9gO8mHIOwnGzK4EiEWPx0QpplIRcfqOeACyYibuUlVAY7ANSlDYoMDjRR3zYCYFRuVmg6Uj+8bRFTBeWT0J3OVyW74IoMcVcWL6uWXQF3RGOsVcVXAXdEJ7lWEVEBd8SpxV5JLgXcETSvurJivALJi6ec7n9ET9tWBdLEWsWIc+ssTtFNRf+Sjbapkq+ZKmam7Y6gqqsqQ9sdgYqVZMXojg3BDoO68KHpjgRaQfHKWGg2Rz6jVivOmisnjTVTlWgG49Gh6orKWevJgDd1UZVy0HJHJOHbetDWMlWW/q7gatBzRzTiE9XS1Vo5BVVXU8VUZ4wj3SxkdehMHOrwbeUcNUxV8GSm4h8SargjThnnfP6Wq0avkm2wqwmCvHIatK+6kmpEeeUUkL8RsV6I8sqUGodvKeq8co3DtxR1XrnG4VuKOq9c4/AtRRnIZbe81BNlXhl/Vl1FLVR55VqHbymqvHKtw7cUVV651uFbiiqvDKuuoB4Kd0S55aUuyBvD5R6JqCHyvHLNw7cUeV655uFbijyvXPPwLUXqjtQ9fEuR5pVhu+rqaSPLK9c+fEuR5ZUtvcMwdUAWyK19+JYiyysHJqyZEiR5ZQPCtxTxNK6xgbQ+iPPKBoRvKQvhGDdkzZQQCVdOBoRvKcK8sgnhW4owr2xE+JYiyiu7p6prVghRXtkyZc2UIHJHjAjfUkR5Zf77ZmqLIK9sRvg2RaETi/WFn1c2aM2UcOGunKQnFusIP69sSPiWwj8hjquuVlG4gVxjwrcU3osssCnhWwovr6w+sVg7eHlljROLdYOXVzYmfEvhBHJ1TizWDS/fGjonFmtHPq9sxJYXlnxe2aDwLSWfVzYofEvJ55UNCt9Scu5InU8sSmgxY9yo8C2FzSsbsuWF5cS4I0aFbylsXtmo8C2FcUdQq+oKPQezza3mJxbFZPPKNT+xKCabVzYsfEtZZkyVMVteWLJ5ZQPXTAmZvLI5W15ypKfx2p9YFJPOKxsXvqWk88rGhW8p6byykWumhHReWf2ysdqSyisbteWFheaVDTixKIbmlQ0M31JoXtnA8C2F5pUNXTMl/OaVTQzfUryfTmVk+Jbyk1c2MnxL+ckrG3FiUczP61MM2/LC8pNXtkwM31Ie7ohxW15YkrxyrV84p0OSVzY0fEtJ8sqGhm8pSV7ZuC0vLIk7UusXzungxROHgVteWOK8sjEnFsXEr08x5sSimDivbGz4lhLnlY0N31L6wOTwLaWFDDqxKGYHDQ7fUk6ukVteWCLL4PAtZQhcs9dMCR4wc8sLyySsugal0DZ9zZTgm75mSpB+ldwctv8FQ9XQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQUBxbQXpHcz+SXBhlTzds7a6Q7B5KL75S+fqOgaySnbcRsGRkjqt7wBFfyHw4risuF2RfSNAnVwLlefKNpJ4gkn2AJT7Lmn2p1FV8MWDOIIu/T4OZl1zEbw7UOG0KhV9Rur+HLJLoCNjXarRF3/kCIXOlUIZ7YM7WaMpYAYEOlGzlt0EAHyQX/vyFQf7jmxfg4jwuyH3J4S4Dca4M2f2smjLeVsjCMAd20OMQ93ozbt+53Q/bT27JX+OQd7JquHjP85U/2hDLQMeQYXTKX6kr4+3t3M5z45xiiz9HXdJp4liG3qsH9GXoMmhkMBSUUeoZj/8PGf2OhEHWjsYycDgd8sgeIdCUkfr9lKWYjDWQkb32bnAx/8qsddaT4cluzdhwVac6ib9yCZivfEm+Msf0NU0Zkg9sFpXxNhd95Stg3+hZaxneDkCUB4LcedEZyM+4Dz+hehnEdRn35iy9dt7P7nyPObQ/0Esy8s/lSRkvMsjb4QIyOO9k2KMqZHCmkwIyOB/DbjUynuc/IqNTAxlT1BOzz71kzlvOJzn4Bre1b/MM2wcts8zWOGLOpJHg5maOyAnylwmmP54phdBNraHLlCH44lpsCnOv2RkJr+XK4E5rqXeMlTo2yNzMvSHMvX4xLOSM8J9MOhBU7hCffvN0wDbbFrYk3qInAx0yUTm5jP8Bl8DJEIxmsPkAAAAASUVORK5CYII=" alt="Tesla" class="img-fluid" style="max-height: 60px; filter: grayscale(100%);">
+          </div>
+          <div class="flex-shrink-0 text-center" style="width: 140px;">
+            <img src="data:image/png;base64,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" alt="LinkedIn" class="img-fluid" style="max-height: 60px; filter: grayscale(100%);">
+          </div>
+        </div>
+        <button class="btn btn-light shadow-sm partners-scroll-btn end-0" id="partners-scroll-right" style="position: absolute; top: 50%; right: 0; transform: translateY(-50%); z-index: 2;">
+          <i class="fa fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+    <style>
+      .partners-carousel::-webkit-scrollbar { display: none; }
+      .partners-carousel { -ms-overflow-style: none; scrollbar-width: none; }
+      .partners-scroll-btn { background: rgba(255,255,255,0.8); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border: none; box-shadow: 0 2px 8px rgba(0,0,0,0.08);}
+      .partners-scroll-btn:active { background: #f0f0f0; }
+    </style>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const carousel = document.getElementById('partners-carousel');
+        document.getElementById('partners-scroll-left').onclick = function() {
+          carousel.scrollBy({left: -200, behavior: 'smooth'});
+        };
+        document.getElementById('partners-scroll-right').onclick = function() {
+          carousel.scrollBy({left: 200, behavior: 'smooth'});
+        };
+      });
+    </script>
+  </section>
+
+  <!-- Section Pourquoi nous choisir -->
+  <section class="why-us-section py-5 animate__animated animate__fadeInUp">
+    <div class="container">
+      <h3 class="text-center mb-4 animate__animated animate__fadeInDown">Pourquoi choisir MOBIL ?</h3>
+        <div class="text-center mb-4"><img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="Pourquoi nous choisir Icon" style="width: 50px;"></div>
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="card h-100 shadow-sm animate__animated animate__flipInY">
+            <img src="https://images.unsplash.com/photo-1517520287167-4bbf64a00d66?auto=format&fit=crop&w=400&q=80" class="card-img-top" alt="Formateurs experts">
+            <div class="card-body">
+              <h5 class="card-title">Formateurs experts</h5>
+              <p class="card-text">Apprenez auprès de leaders du secteur et de professionnels certifiés.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card h-100 shadow-sm animate__animated animate__flipInY animate__delay-1s">
+            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" class="card-img-top" alt="Apprentissage flexible">
+            <div class="card-body">
+              <h5 class="card-title">Apprentissage flexible</h5>
+              <p class="card-text">Accédez aux cours à tout moment, où que vous soyez, sur n'importe quel appareil.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card h-100 shadow-sm animate__animated animate__flipInY animate__delay-2s">
+            <img src="https://images.unsplash.com/photo-1503676382389-4809596d5290?auto=format&fit=crop&w=400&q=80" class="card-img-top" alt="Soutien communautaire">
+            <div class="card-body">
+              <h5 class="card-title">Soutien communautaire</h5>
+              <p class="card-text">Rejoignez une communauté dynamique d'apprenants et de mentors.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Cours -->
+  <section id="courses" class="course-section py-5 bg-light animate__animated animate__fadeIn">
+    <div class="container">
+      <h3 class="text-center mb-4 animate__animated animate__fadeInDown">Cours populaires</h3>
+      <div class="text-center mb-4"><img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="Cours Icon" style="width: 50px;"></div>
+        <p class="text-center mb-4">Découvrez nos cours les plus populaires pour améliorer vos compétences et booster votre carrière.</p>
+      <div class="row">
+        <div class="col-md-3 mb-4">
+          <div class="card h-100 shadow-sm animate__animated animate__zoomIn">
+            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80" class="card-img-top" alt="Cours 1">
+            <div class="card-body">
+              <h5 class="card-title">Introduction au développement mobile</h5>
+              <p class="card-text">Lancez votre carrière dans le développement d'applications mobiles avec ce cours pour débutants.</p>
+              <a href="#" class="btn btn-primary btn-sm">En savoir plus</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 mb-4">
+          <div class="card h-100 shadow-sm animate__animated animate__zoomIn animate__delay-1s">
+            <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=400&q=80" class="card-img-top" alt="Cours 2">
+            <div class="card-body">
+              <h5 class="card-title">Bases du design UI/UX</h5>
+              <p class="card-text">Maîtrisez les fondamentaux de l'interface utilisateur et de l'expérience utilisateur.</p>
+              <a href="#" class="btn btn-primary btn-sm">En savoir plus</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 mb-4">
+          <div class="card h-100 shadow-sm animate__animated animate__zoomIn animate__delay-2s">
+            <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80" class="card-img-top" alt="Cours 3">
+            <div class="card-body">
+              <h5 class="card-title">Programmation Android avancée</h5>
+              <p class="card-text">Perfectionnez vos compétences Android avec des concepts avancés et des projets pratiques.</p>
+              <a href="#" class="btn btn-primary btn-sm">En savoir plus</a>
+            </div>
+          </div>
+        </div>
+        <!-- Cours de conduite -->
+        <div class="col-md-3 mb-4">
+          <div class="card h-100 shadow-sm animate__animated animate__zoomIn animate__delay-3s">
+            <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=400&q=80" class="card-img-top" alt="Cours de conduite">
+            <div class="card-body">
+              <h5 class="card-title">Cours de conduite</h5>
+              <p class="card-text">Apprenez les bases d'une conduite sûre et responsable avec notre cours complet de conduite.</p>
+              <a href="#" class="btn btn-primary btn-sm">En savoir plus</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<div id="shop" class="container mt-2 mb-5">
+    <h2 class="mb-4 text-center">Featured Products</h2>
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+            {% if(items is not empty) %}
+                {% for item in items %}
+                    <div class="col">
+                        <div class="card h-100 border-0 shadow animate__animated animate__fadeInUp">
+                            <div class="position-relative">
+                                <img src="{{ asset('upload_images/' ~ item.image ) }}" class="card-img-top rounded-top object-fit-cover" alt="{{ item.designation }}" style="height: 220px; width: 100%; object-fit: cover;">
+                                {% if item.price < item.price|default(0) %}
+                                    <span class="badge bg-danger position-absolute top-0 end-0 m-2">Sale</span>
+                                {% endif %}
+                            </div>
+                            <div class="card-body d-flex flex-column bg-light">
+                                <h5 class="card-title fw-bold text-primary">{{ item.designation|default('No designation') }}</h5>
+                                <p class="card-text text-muted small mb-2" style="min-height: 48px;">{{ item.description|default('No description')|length > 60 ? item.description|slice(0, 60) ~ '...' : item.description }}</p>
+                                <div class="mb-3">
+                                    <span class="h5 text-success fw-bold">{{ (item.price - (item.price * 0.35))|number_format(0, '.', ',') }} FCFA</span>
+                                    <span class="text-muted ms-2"><del>{{ item.price|number_format(0, '.', ',') }} FCFA</del>(-35%)</span>
+                                </div>
+                                <div class="mt-auto">
+                                    {% if app.user %}
+                                        <button class="btn btn-outline-primary w-100 fw-bold" data-bs-toggle="modal" data-bs-target="#productModal{{ item.id }}">
+                                            <i class="fa-solid fa-eye me-1"></i> View Details
+                                        </button>
+                                    {% else %}
+                                        <a class="btn btn-danger w-100 fw-bold" href="{{ path('app_login') }}">
+                                            <i class="fa-solid fa-user"></i> Login to view
+                                        </a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        {# Modal for product details #}
+                        <div class="modal fade" id="productModal{{ item.id }}" tabindex="-1" aria-labelledby="productModalLabel{{ item.id }}" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-primary text-white">
+                                        <h5 class="modal-title" id="productModalLabel{{ item.id }}">{{ item.designation }}</h5>
+                                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <img src="{{ asset('upload_images/' ~ item.image ) }}" class="img-fluid rounded mb-3" alt="{{ item.designation }}">
+                                        <p class="mb-2"><strong>Description:</strong> {{ item.description|default('No description') }}</p>
+                                        <p>
+                                            <strong>Price:</strong>
+                                            <span class="h5 text-success">{{ (item.price - (item.price * 0.35))|number_format(0, '.', ',') }} FCFA</span>
+                                            <span class="text-muted ms-2"><del>{{ item.price|number_format(0, '.', ',') }} FCFA</del>(-35%)</span>
+                                        </p>
+                                        <hr>
+                                        <a class="btn btn-success w-100 fw-bold" href="{{ path('app_order_line_new', {'id': item.id}) }}">
+                                            <i class="fa-solid fa-cart-plus me-1"></i> Add to Cart
+                                        </a>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %} 
+            {% else %}
+                <div class="col-12">
+                    <div class="alert alert-info text-center">No Course available at the moment.</div>
+                </div>
+            {% endif %}
+    </div>
+</div>
+
+<!-- Bootstrap 5.3 JS Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock %}
